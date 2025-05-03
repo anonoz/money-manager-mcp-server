@@ -1,0 +1,19 @@
+[project]
+name = "mcp-server-piggy"
+version = "0.0.1"
+description = "MCP Server to explore money manager sqlite database"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.7.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = ["pyright>=1.1.389"]
+
+[project.scripts]
+mcp-server-piggy = "mcp_server_piggy:main"

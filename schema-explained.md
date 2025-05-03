@@ -1,0 +1,33 @@
+# piggy.sqlite explained
+
+## Background
+
+This sqlite is exported from Realbyte's Money Manger - a personal finance app.
+
+## Start with this view sql
+
+```
+SELECT
+  ZINOUTCOME.ZTXDATESTR,
+  CAST(substr(ZINOUTCOME.ZTXDATESTR, 1, 4) AS INTEGER) AS TXN_YEAR,
+  ZINOUTCOME.ZCONTENT,
+  ZINOUTCOME.ZAMOUNT,
+  PARENT_CATEGORY.ZNAME AS PARENT_CATEGORY_NAME,
+  ZCATEGORY.ZNAME AS CATEGORY_NAME
+FROM ZINOUTCOME
+LEFT JOIN
+  ZCATEGORY
+  ON ZINOUTCOME.ZCATEGORYUID = ZCATEGORY.ZUID
+LEFT JOIN
+  ZCATEGORY AS PARENT_CATEGORY
+  ON ZCATEGORY.ZPUID = PARENT_CATEGORY.ZUID
+WHERE ZINOUTCOME.ZDO_TYPE = 1;
+```
+
+## Filtering criteria
+
+### Coffee spends
+
+```
+
+```
