@@ -4,7 +4,7 @@ import sys
 
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
-from mcp.server.fastmcp import FastMCP, Context
+from fastmcp import FastMCP, Context
 
 class AppContext:
     dbconn: sqlite3.Connection
@@ -85,3 +85,6 @@ def query_data(sql: str) -> str:
         return "\n".join(str(row) for row in result)
     except Exception as e:
         return f"Error: {str(e)}"
+
+if __name__ == "__main__":
+    mcp.run()

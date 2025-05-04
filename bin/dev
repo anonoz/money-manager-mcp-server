@@ -1,0 +1,2 @@
+#!/bin/sh
+uv run fastmcp dev server.py

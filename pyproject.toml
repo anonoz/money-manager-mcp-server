@@ -5,7 +5,7 @@ description = "MCP Server to explore money manager sqlite database"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "mcp[cli]>=1.7.0",
+    "fastmcp>=2.2.7",
 ]
 
 [build-system]
