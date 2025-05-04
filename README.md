@@ -15,7 +15,15 @@ git clone
 uv sync
 ```
 
+Start the inspector
+
+```
+uv run mcp dev server.py
+```
+
+
 Add it to Claude Desktop
 
 ```
+uv run mcp install server.py
 ```

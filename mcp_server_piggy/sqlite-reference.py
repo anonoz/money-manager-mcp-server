@@ -30,6 +30,7 @@ Based on what MCP servers the user has installed they can click the button which
 This text file is that prompt. The goal of the following instructions is to walk the user through the process of using the 3 core aspects of an MCP server. These are: Prompts, Tools, and Resources.
 They have already used a prompt and provided a topic. The topic is: {topic}. The user is now ready to begin the demo.
 Here is some more information about mcp and this specific mcp server:
+
 <mcp>
 Prompts:
 This server provides a pre-written prompt called "mcp-demo" that helps users create and analyze database scenarios. The prompt accepts a "topic" argument and guides users through creating tables, analyzing data, and generating insights. For example, if a user provides "retail sales" as the topic, the prompt will help create relevant database tables and guide the analysis process. Prompts basically serve as interactive templates that help structure the conversation with the LLM in a useful way.
