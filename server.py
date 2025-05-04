@@ -1,6 +1,9 @@
 import os
 import sqlite3
 import sys
+import glob
+import shutil
+from pathlib import Path
 
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
@@ -18,11 +21,23 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
     # Initialize on startup
     
     try:
-        # Check if database file exists
-        if not os.path.exists("./piggy.sqlite"):
-            print("Error: piggy.sqlite does not exist.", file=sys.stderr)
+        # Find the latest .mmbak file in Downloads directory
+        home_dir = os.path.expanduser("~")
+        download_dir = os.path.join(home_dir, "Downloads")
+        mmbak_files = glob.glob(os.path.join(download_dir, "*.mmbak"))
+        
+        if not mmbak_files:
+            print("Error: No .mmbak files found in Downloads directory.", file=sys.stderr)
             sys.exit(1)  # Exit with error code 1
-            
+        
+        # Sort by creation time (newest first)
+        latest_mmbak = max(mmbak_files, key=os.path.getctime)
+        print(f"Using latest backup file: {latest_mmbak}", file=sys.stderr)
+        
+        # Copy to current directory as piggy.sqlite
+        shutil.copy2(latest_mmbak, "./piggy.sqlite")
+        print(f"Copied {latest_mmbak} to ./piggy.sqlite", file=sys.stderr)
+        
         dbconn = sqlite3.connect("./piggy.sqlite")
         with open("./sqls/expenses.view.sql", "r") as sql_file:
             sql_script = sql_file.read()
