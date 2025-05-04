@@ -71,7 +71,23 @@ def query_data(sql: str) -> str:
     """
     Execute SELECT SQLs safely.
 
-    To 
+    1. Almost everything you need are in the `expenses` view. It has these columns:
+            - ZTXDATESTR: The transaction date string in ISO8601
+            - TXN_YEAR: The transaction year (good for GROUP BY)
+            - ZCONTENT: The transaction recipient or description
+            - SPENT_MYR: The amount spent in Malaysian Ringgit
+            - DEST_CURRENCY: The destination currency code
+            - PARENT_CATEGORY_NAME: The parent category name
+            - CATEGORY_NAME: The subcategory name
+
+    2. It is advisable to discover all the categories & parent categories before searching for transactions.
+            `SELECT DISTINCT PARENT_CATEGORY_NAME FROM expenses;`
+            `SELECT DISTINCT CATEGORY_NAME FROM expenses;`
+
+    3. Some merchants are the same, but slightly different ZCONTENT may be used. For example:
+            - Zus Coffee / Zus Delivery
+
+    4. It is possible to recreate a trip itinerary from MIN/MAX(ZTXDATESTR) and DEST_CURRENCY for every year.
     """
     ctx = mcp.get_context()
     # Check if query contains write operations
