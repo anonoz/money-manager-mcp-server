@@ -1,10 +1,6 @@
 # Piggy MCP Server
 
-Allows talking to Money Manager database.
-
-To begin, export mmbak file and place it in this directory as piggy.sqlite file.
-
-This project forks from sqlite reference mcp server.
+Allows querying strange questions to [Realbyte's Money Manager](https://realbyteapps.com/) database.
 
 ## Setup
 
