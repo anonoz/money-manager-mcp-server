@@ -34,3 +34,4 @@ bin/install
     2. What countries have I visited in past 4 years, and whats my expenditures per day like?
     3. Forecast my spending on foods 5 years from now.
 
+![Screenshot of Claude answering 'what are my favourite cafes'](media/piggy-claude-01.png)
